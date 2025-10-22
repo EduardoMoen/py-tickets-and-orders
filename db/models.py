@@ -88,11 +88,11 @@ class Ticket(models.Model):
     seat = models.IntegerField()
 
     def __str__(self) -> str:
-        return (f"{self.movie_session.movie.title} "
-                f"{self.movie_session.show_time.strftime(
-                    "%Y-%m-%d %H:%M:%S"
-                )} "
-                f"(row: {self.row}, seat: {self.seat})")
+        return (
+            self.movie_session.movie.title + " "
+            + str(self.movie_session.show_time.strftime("%Y-%m-%d %H:%M:%S"))
+            + " (row: " + str(self.row) + ", seat: " + str(self.seat) + ")"
+        )
 
     def clean(self) -> None:
         errors = {}
